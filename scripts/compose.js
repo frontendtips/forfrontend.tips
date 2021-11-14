@@ -86,7 +86,7 @@ inquirer
       name: 'tags',
       message: 'Any Tags? Separate them with , or leave empty if no tags.',
       type: 'list',
-      choices: ['JavaScript', 'Node Js'],
+      choices: ['javascript', 'node', 'typescript', 'html', 'css'],
     },
     {
       name: 'layout',

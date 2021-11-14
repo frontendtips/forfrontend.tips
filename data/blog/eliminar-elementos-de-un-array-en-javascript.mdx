@@ -1,0 +1,169 @@
+---
+title: Eliminar elementos de un array en Javascript
+date: '2021-11-14'
+tags: ['javascript']
+draft: false
+summary: Hay varias formas e eliminar elementos en JavaScript dependiendo la situación podrás utilizar una u otra. Podemos eliminar el primer elemento, el último, basado en su intice, filtrando el erray, entre otras formas.
+images: []
+layout: PostSimple
+authors: ['default']
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+Eliminar o **filtrar elementos de un array** en [JavaScript](/tags/javascript) es una tarea muy común. A continuación veremos algunas formas de **eliminar elementos de un array en [JavaScript](/tags/javascript)**.
+
+## Eliminar el primer elemento de un array en JavaScript
+
+El Objeto [Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array) de Javascript nos proporciona el método [`shift()`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) que nos permite **eliminar el primer elemento de un array**.
+
+Elimina el elemento ubicado en el ínice 0 del array y devuelve el elemento eliminado. Si el array está vacío, devuelve `undefined`.
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+jsLibraries.shift()
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRemove={(items) => {
+    const arrayItems = [...items]
+    const returnValue = arrayItems.shift()
+    console.log({ arrayItems, returnValue })
+    return { arrayItems, returnValue }
+  }}
+  runCode="jsLibraries.shift()"
+/>
+
+> Este método no modifica el array original.
+
+## Eliminar el último elemento de un array en JavaScript
+
+Una de las formas más sencillas de **eliminar el último elemento de un array**, es usando el método [`pop()`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/pop). Este método elimina el último elemento del array y devuelve el elemento eliminado. Si el array está vacío retorna `undefined`.
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+jsLibraries.pop()
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRemove={(items) => {
+    const arrayItems = [...items]
+    const returnValue = arrayItems.pop()
+    return { arrayItems, returnValue }
+  }}
+  runCode="jsLibraries.pop()"
+/>
+
+Otra forma de **eliminar el último o los últimos elementos de un array** es utilizando su propiedad `length`. Si modificamos la longitud del array asignando a la propiedad `length` un valor menor a la longitud actual, eliminará los elementos que estén en el índice superior al valor de la longitud.
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+jsLibraries.length = jsLibraries.length - 1
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRemove={(items) => {
+    const arrayItems = [...items]
+    const returnValue = (arrayItems.length =
+      arrayItems.length > 0 ? arrayItems.length - 1 : arrayItems.length)
+    return { arrayItems, returnValue }
+  }}
+  runCode="jsLibraries.length = jsLibraries.length - 1"
+/>
+
+O si quieres eliminar los últimos 3 elementos
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+jsLibraries.length = jsLibraries.length - 3
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRemove={(items) => {
+    const arrayItems = [...items]
+    const returnValue = (arrayItems.length =
+      arrayItems.length >= 3 ? arrayItems.length - 3 : arrayItems.length)
+    return { arrayItems, returnValue }
+  }}
+  runCode="jsLibraries.length = jsLibraries.length - 3"
+/>
+
+> Debes tener en cuenta que sí, la longitud del array es menor que la cantidad de elementos que quieres eliminar, saltará un error, debido a que no se puede asignar un valor negativo a la propiedad `length`.
+
+## Eliminar un elemento en una posición específica
+
+Utilizando el método `splice()` que nos permite **eliminar un elemento en una posición específica**.
+
+### Elmina el elemento en la posición `0` usando slice()
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+jsLibraries.slice(0, 1) // Elimina el primer elemento el array
+```
+
+> Este método modifica el array original.
+
+## Eliminar un rango de elementos a partir de una posición
+
+Utilizando el método `splice()` podemos especificar un rango de elementos a eliminar **basado en un índice inicial y final**.
+
+```js showLineNumbers
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+const removedLibraries = jsLibraries.splice(1, 3)
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRun={(items) => {
+    const arrayItems = [...items]
+    const returnValue = arrayItems.splice(1, 3)
+    console.log({ jsLibraries: arrayItems, removedLibraries: returnValue })
+    return { arrayItems, returnValue }
+  }}
+  runCode="jsLibraries.splice(1, 3)"
+  runBtnText="Run"
+/>
+
+Al ejecutar `jsLibraries.splice(1, 3)` modificamos el array original y eliminamos los elementos ubicados en el índice `1` hasta el índice `3`.
+
+El método `splice()` retorna un array con los elementos eliminados.
+
+## Eliminar elementos de un array basado en su valor
+
+En ocasiones queremos eliminar un elemento de un array basado en su valor. Para ello podemos utilizar el método [`filter()`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) que nos permite filtrar un array basado en una función que recibe como primer parámetro.
+
+> Creamos un nuevo array `filteredLibraries` con los elementos que cumplan la condición.
+
+```js
+const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+const filteredLibraries = jsLibraries.filter((item) => item !== 'react')
+```
+
+<ConsoleLogArray
+  items={['react', 'redux', 'vue', 'D3', 'Chart']}
+  onRun={(items) => {
+    const arrayItems = [...items]
+    const jsLibraries = ['react', 'redux', 'vue', 'D3', 'Chart']
+    const filteredLibraries = jsLibraries.filter((item) => item !== 'react')
+
+    console.log({ jsLibraries: arrayItems, filteredLibraries })
+
+    return {
+      arrayItems,
+      returnValue: filteredLibraries,
+    }
+
+}}
+runCode="jsLibraries.filter((item) => item !== 'react')"
+runBtnText="Run"
+/>
+
+## Conclusión
+
+Hay muchas otras formas de buscar, filtrar o eliminar elementos de un array. Lo mismo que hemos hecho con estos métodos, podemos hacerlo con cualquier bucle que nos proporciona JavaScript.
+
+Pero actualmente es recomendable utilizar los métodos que nos ofrece el lenguaje.

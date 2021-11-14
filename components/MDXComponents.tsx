@@ -5,6 +5,7 @@ import Image from './Image'
 import CustomLink from './Link'
 import TOCInline from './TOCInline'
 import Pre from './Pre'
+import { ConsoleLogArray } from './content-example/ConsoleLogArray'
 import { BlogNewsletterForm } from './NewsletterForm'
 
 const Wrapper: React.ComponentType<{ layout: string }> = ({ layout, ...rest }) => {
@@ -21,6 +22,8 @@ export const MDXComponents: ComponentMap = {
   wrapper: Wrapper,
   //@ts-ignore
   BlogNewsletterForm,
+  //@ts-ignore
+  ConsoleLogArray,
 }
 
 interface Props {
