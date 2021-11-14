@@ -1,0 +1,164 @@
+---
+title: Cómo tipar componentes React con TypeScript
+date: '2021-11-08'
+tags: ['React', 'TypeScript']
+draft: false
+summary: Cuando combinas React y TypesScript además del auto completado evitas el uso de PropTypes y mejoras la prevención de errores de tipados.
+images: ['/static/images/tipar-componentes-react-con-typescript.png']
+layout: PostLayout
+authors: ['default']
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+Cuando combinas React y TypesScript además del auto completado evitas el uso de PropTypes y mejoras la prevención de errores de tipados.
+
+Veamos algunos ejemplos de como usar TypeScript en React.
+
+## Tipar componentes funcionales con TypeScript
+
+React nos proporciona varias `interfaces` para el tipado de componentes con [TypeScript](/tags/typescript).
+
+Tenemos la interfaz [`FunctionComponent<P = {}>`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/77e11a0cf0d4e6deff26272b3e4ef4871691c0a5/types/react/index.d.ts#L549) es una interfaz genérica que recibe las un objeto u otra interfaz con las propiedades de nuestro componente.
+
+También podemos utilizar el tipo `FC<P = {}>` que es un alias de [`FunctionComponent<P = {}>`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/77e11a0cf0d4e6deff26272b3e4ef4871691c0a5/types/react/index.d.ts#L547).
+
+Imaginemos que queremos crear un componente `Post.tsx` que recibe las propiedades de un `post`, lo podemos hacer de la siguiente forma.
+
+### 1. Importar los tipos que necesitamos
+
+```tsx
+import React, { FC } from 'react'
+import { Post } from `~/types`
+```
+
+### 2. Definir una interfaz con las propiedades que necesitamos
+
+Esta es una de las muchas formas que tenemos para definir propiedades en nuestro componente, todo depende del proyecto y la forma elegida para hacerlo.
+
+```tsx
+interface PostProps {
+  post: Post
+}
+```
+
+### 3. Definir el componente utilizando la interfaz definida
+
+Normalmente los componentes de react retornan un `ReactElement` que es una etiqueta html. Hay casos en los que no es así, por ejemplo cuando queremos retornar `null` si no existe algún valor requerido, para no renderizar nada.
+
+```tsx
+export const Post: FC<PostProps> = ({ post }): JSX.Element | null => {}
+```
+
+### 4. Retornamos `null` si no existe un post
+
+Aunque la propiedad post está definida como obligatoria, hacemos la comprobación (Opcional).
+
+```tsx
+if (!post) {
+  return null
+}
+```
+
+### 5. Por último, retornamos el elemento html que vamos a renderizar
+
+```tsx
+const { title, date, tags, summary } = post
+
+return (
+  <article>
+    <h1>{title}</h1>
+    <div>
+      <span>{date}</span>
+      <span>{tags.join(', ')}</span>
+    </div>
+    <p>{summary}</p>
+  </article>
+)
+```
+
+### Resultado del comporte `Post`
+
+```tsx {1, 5, 10, 12, 17} showLineNumbers
+import React, { FC } from 'react'
+import { Post } from `~/types`
+
+// Propiedades del componente
+interface PostProps {
+  post: Post
+}
+
+// Definición del componente
+export const Post: FC<PostProps> = ({ post }): JSX.Element => {
+  if (!post) {
+    return null
+  }
+
+  const { title, date, tags, summary } = post
+
+  return (
+    <article>
+      <h1>{title}</h1>
+      <div>
+        <span>{date}</span>
+        <span>{tags.join(', ')}</span>
+      </div>
+      <p>{summary}</p>
+    </article>
+  )
+}
+```
+
+## Propiedades opcionales en componentes
+
+En react reutilizar componentes es muy común, por lo que las propiedades opcionales serán muy utilizadas.
+
+Para definir una propiedad opción, en typescript utilizamos el signo de interrogación `?`
+
+```ts
+interface HeadingsProps {
+  tag?: React.ElementType
+  className?: string
+  text: string
+}
+```
+
+### Ejemeplo
+
+Imaginemos un componente `Headings` que utilizaremos para representar los encabezados en toda nuestra aplicación.
+
+- Propiedad `text`, **obligatoria** que representa el contenido del encabezado.
+- Propiedad `tag` **opcional**, por defecto utilizará `h1`.
+- Propiedad `className` para poder asignar estilos desde el componente padre.
+
+```tsx {1,3,9,11, 15,18} showLineNumbers
+import React, { FC } from 'react'
+
+interface HeadingsProps {
+  text: string
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  className?: string
+}
+
+export const Headings: FC<HeadingsProps> = ({
+  text,
+  tag: Tag = 'h1',
+  className,
+}): JSX.Element | null => {
+  if (!text) {
+    return null
+  }
+
+  return <Tag className={className}>{text}</Tag>
+}
+```
+
+Utilizamos la unión de tipos de typescript para tipar la propiedad tag, la cual sólo puede recibir uno de estos valores ` 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'`
+
+La propiedad tag es opcional y asignamos el valor `h1` por defecto, esto quiere decir, que si no se especifica la propiedad tag, se asignará el valor `h1`.
+
+## Conclusión
+
+Este es un tema muy amplio que intentaremos retomar con conceptos más avanzados en el futuro.
+
+Para acostumbrarte a trabajar con los tipos, ayudate de eslint añadiendo reglas que te obliguen a añadir los tipos a tus componentes. Más adelante lo agradecerás. :)

@@ -1,0 +1,61 @@
+.list {
+  @apply flex flex-wrap gap-4 justify-center max-w-2xl m-auto mb-8;
+}
+.link {
+  @apply text-sm dark:border-gray-600 text-gray-500 dark:text-gray-300 inline-flex items-center font-bold uppercase px-2  py-2 border-2 rounded-full transition duration-300 ease-in-out;
+}
+
+.link:hover .icon {
+  @apply opacity-100 transform scale-125;
+}
+
+.icon {
+  @apply rounded-full mr-2 w-6 opacity-50 transition-all duration-300;
+}
+
+.icon-javascript {
+  @apply hover:border-javascript;
+}
+.icon-typescript {
+  @apply hover:border-typescript;
+}
+.icon-html {
+  @apply hover:border-html;
+}
+.icon-css {
+  @apply hover:border-css;
+}
+.icon-node {
+  @apply hover:border-node;
+}
+.icon-react {
+  @apply hover:border-react;
+}
+.icon-next {
+  @apply hover:border-next;
+}
+
+.count {
+  width: 20px;
+  height: 20px;
+  @apply flex ml-2 justify-center items-center bg-gray-600 p-2 rounded-full text-xs text-gray-200 transition duration-300 ease-in-out;
+}
+.count:hover {
+  @apply bg-gray-100;
+}
+
+.link.icon-javascript:hover .count {
+  @apply bg-javascript text-gray-500;
+}
+.link.icon-typescript:hover .count {
+  @apply bg-typescript;
+}
+.link.icon-node:hover .count {
+  @apply bg-node;
+}
+.link.icon-css:hover .count {
+  @apply bg-css;
+}
+.link.icon-html:hover .count {
+  @apply bg-html;
+}

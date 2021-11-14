@@ -1,0 +1,11 @@
+.wrapper {
+  @apply flex items-center;
+}
+
+.text {
+  @apply text-4xl mr-1;
+}
+
+.tips {
+  @apply bg-gray-800 rounded p-1 text-white;
+}
