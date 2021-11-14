@@ -24,7 +24,7 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: colors.teal,
+        primary: colors.lightBlue,
         gray: colors.blueGray,
         javascript: '#F7DF1E',
         typescript: '#017ACB',
@@ -63,13 +63,14 @@ module.exports = {
               color: theme('colors.gray.900'),
             },
             code: {
-              color: theme('colors.pink.500'),
+              color: theme('colors.blue.400'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',
               paddingTop: '2px',
               paddingBottom: '2px',
               borderRadius: '0.25rem',
+              fontWeight: '400',
             },
             'code:before': {
               content: 'none',
@@ -95,7 +96,7 @@ module.exports = {
             },
             strong: { color: theme('colors.gray.600') },
             blockquote: {
-              color: theme('colors.gray.900'),
+              color: theme('colors.gray.800'),
               borderLeftColor: theme('colors.gray.200'),
             },
           },

@@ -36,7 +36,6 @@ const getDate = new Date().toISOString()
                 if (page === `pages/404.tsx` || page === `pages/[...slug].tsx`) {
                   return
                 }
-                console.log({ route })
                 return `
                         <url>
                             <loc>${siteMetadata.siteUrl}${route}</loc>

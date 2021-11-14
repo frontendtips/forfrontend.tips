@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { FC } from 'react'
 import Link from '~/components/Link'
 import classnames from 'classnames'

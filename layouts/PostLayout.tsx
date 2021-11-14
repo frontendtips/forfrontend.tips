@@ -10,7 +10,6 @@ import siteMetadata from '~/data/siteMetadata'
 import Comments from '~/components/comments'
 import { PostFrontMatter } from '~/types/PostFrontMatter'
 import { AuthorFrontMatter } from '~/types/AuthorFrontMatter'
-import SocialIcon from '~/components/social-icons/index'
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/edit/master/src/data/blog/${fileName}`
 const discussUrl = (slug) =>
@@ -128,9 +127,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && (
                       <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                        <p className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Artículo anterior
-                        </h2>
+                        </p>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/${prev.slug}`}>{prev.title}</Link>
                         </div>
@@ -138,9 +137,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                     )}
                     {next && (
                       <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                        <p className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Siguiente artículo
-                        </h2>
+                        </p>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/${next.slug}`}>{next.title}</Link>
                         </div>
