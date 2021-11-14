@@ -86,7 +86,13 @@ npm run dev -- -p 3002
 
 ## Developed by
 
-It is a project developed by _Geordano Polanco_ to share knowledge about front-end development. I have been based on [Tailwind Nextjs Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) to develop the project quickly
+It is a project developed by [_Geordano Polanco_](https://gpolanco.com) to share knowledge about front-end development. I have been based on [Tailwind Nextjs Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) to develop the project quickly
+
+## TODO
+
+- [ ] Add feed link on tag page
+- [ ] Add tag page description
+- [ ] Create author page and author list
 
 ## License
 
