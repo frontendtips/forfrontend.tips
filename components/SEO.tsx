@@ -148,6 +148,7 @@ export const BlogSEO = ({
     publisher: {
       '@type': 'Organization',
       name: siteMetadata.author,
+      url: siteMetadata.siteUrl,
       logo: {
         '@type': 'ImageObject',
         url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
