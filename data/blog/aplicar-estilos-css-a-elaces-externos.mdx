@@ -3,7 +3,7 @@ title: Aplicar estilos css a elaces externos
 date: '2021-11-27'
 tags: ['css']
 draft: false
-summary: Aprende a utilizar selectores de atributos en css. En este caso los utilizamos para añadir un icono a todos los enlaces externos de nuestro sitio web.
+summary: Aprende a utilizar selectores de atributos en css. En este caso los usamos para añadir un icono a todos los enlaces externos de nuestro sitio web.
 images: ['/static/images/add-an-icon-to-external-links.jpg']
 layout: PostLayout
 authors: ['default']
@@ -17,7 +17,7 @@ Vamos a ver algunos ejemplos de selectores de atributos que nos pueden ayudar a 
 
 ## Utilizando el atributo target
 
-Generalmente a los enlaces externos añadimos el atributo **target="\_blank"** para que se abra en una nueva pestaña.
+Generalmente, a los enlaces externos añadimos el atributo **target="\_blank"** para que se abra en una nueva pestaña.
 
 ```css
 a[target='_blank']:after {
@@ -29,7 +29,7 @@ a[target='_blank']:after {
 <ExternalLink href="" target="_blank" text="Github" />
 
 - La propiedad `content` puede ser una string, que representa el path o bien la imagen en base 64.
-- Si utilizamos alguna librería de iconos como `FontAwesome`, podemos utilizar la propiedad `content` para indicar el codigo del icono.
+- Si utilizamos alguna librería de iconos como `FontAwesome`, podemos utilizar la propiedad `content` para indicar el código del icono.
 
 ```css
 a[target='_blank']:after {
@@ -44,7 +44,7 @@ Basandonos en el valor del atributo `href` podemos decidir si un enlace es inter
 
 **Por ejemplo**
 
-- Si el dominio utilizado no conincide con el dominio del sitio web.
+- Si el dominio utilizado no coincide con el dominio del sitio web.
 - Si no es un ancla (No inicia con `#`)
 - Si no empieza con `/`
 
