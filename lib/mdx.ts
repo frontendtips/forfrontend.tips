@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import path from 'path'
 import readingTime from 'reading-time'
 // import { visit } from 'unist-util-visit'
+
 import type { Pluggable } from 'unified'
 
 // Remark packages
@@ -18,6 +19,7 @@ import remarkImgToJsx from './remark-img-to-jsx'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
+import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 
 import getAllFilesRecursively from './utils/files'
@@ -72,7 +74,11 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
 
   const toc: Toc = []
 
-  const { frontmatter, code } = await bundleMDX(source, {
+  // Parsing frontmatter here to pass it in as options to rehype plugin
+  const { data: frontmatter } = matter(source)
+
+  const { code } = await bundleMDX({
+    source,
     // mdx imports can be automatically source from the components directory
     cwd: path.join(process.cwd(), 'components'),
     xdmOptions(options) {
@@ -93,7 +99,11 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
         rehypeSlug,
         rehypeAutolinkHeadings,
         rehypeKatex,
-        [rehypePrismPlus, { ignoreMissing: true }] as Pluggable,
+        [
+          rehypeCitation,
+          { bibliography: frontmatter?.bibliography, path: path.join(root, 'data') },
+        ],
+        [rehypePrismPlus, { ignoreMissing: true }],
       ]
       return options
     },
