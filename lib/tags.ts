@@ -41,15 +41,16 @@ export async function getAllTags(type: 'blog' | 'authors'): Promise<Tag[]> {
       data.tags.forEach((tag) => {
         const formattedTag = kebabCase(tag)
         const gatData = tagsData.find((t) => t.code === formattedTag)
-        if (!tags.some((t) => t.name === formattedTag)) {
+
+        if (!tags.some((t) => t.code === formattedTag)) {
           tags.push({
             ...gatData,
-            count: getTagsCount(tag, type),
+            count: getTagsCount(tag, 'blog'),
           })
         }
       })
     }
   })
 
-  return tags
+  return [...tags]
 }

@@ -1,0 +1,74 @@
+---
+title: React hooks - Listado de hooks comunes utilizados en applicaciones React
+date: '2021-12-25'
+tags: ['react']
+draft: false
+summary: Quien no ha necesitado crear hooks en aplicaciones react para utilizar funcionalidades comunes como localStorage o window resize, en react-hooks.org hay un henorme lista de hook que te servirán para ahorrar tiempo o bien aprender como se crean.
+images: []
+layout: PostLayout
+authors: ['default']
+---
+
+En [Rooks](https://react-hooks.org/) han creado una enorme lista de hooks con funcionalidades comunes en las aplicaciones web creadas con react. Soporta `ESM`, `CommonJS` o `UMD`. Todas las plataformas y bases de código son compatibles.
+
+## Como utilizar la lbreria
+
+Todos lo hooks están recopilado en su paquete de npm.
+
+```sh
+npm i rooks
+```
+
+## Hooks disponibles
+
+Mencionaré los que me han parecido más interesantes o que se utilizan más frecuentemente.
+
+## useLocalstorage
+
+En toda aplicación web, es necesario almacenar datos en el navegador. Token de autenticación, datos de usuario, etc.
+
+Está preparado para usar en aplicaciones como nextjs que se ejecutan tanto en cliente como en servidor y hay que controlar que estén o no disponibles las api's del navegador. Con este hook no tendrías que preocuparte, porque ya se tiene en cuenta.
+
+```js
+import { useLocalstorage } from 'rooks'
+
+const [value, set, remove] = useLocalstorage('local-key', 0)
+```
+
+**Parámetros**
+
+- Primer parámetro, el nombre con el que se guardará en localStorage.
+- Segundo parámetro, valor a guardar en localStorage.
+
+Cuenta con tres métodos de acceso:
+
+- set: Guarda un valor en una clave
+- remove: Elimina una clave
+- value: valor almacenado en la clave
+
+> Cuenta con un listener que se ejecuta cuando el valor cambia. Esto te asegura de que el valor va a estar actualizado en todas las pestañas del navegador.
+
+```ts
+// Detencta cambios de localStorage entre pestañas del navegador
+useEffect(() => {
+  window.addEventListener('storage', listen)
+
+  return () => {
+    window.removeEventListener('storage', listen)
+  }
+}, [])
+```
+
+## Otros hooks interesantes del listado
+
+- [useKeyBindings](https://react-hooks.org/docs/useKeyBindings)
+- [useOnline](https://react-hooks.org/docs/useOnline)
+- [useWindowSize](https://react-hooks.org/docs/useWindowSize)
+- [useWindowScrollPosition](https://react-hooks.org/docs/useWindowScrollPosition)
+- [useOnWindowResize](https://react-hooks.org/docs/useOnWindowResize)
+- [useGeolocation](https://react-hooks.org/docs/useGeolocation)
+- [useFullscreen](https://react-hooks.org/docs/useFullscreen)
+- [useDebounce](https://react-hooks.org/docs/useDebounce)
+- [useMediaMatch](https://react-hooks.org/docs/useMediaMatch)
+
+Puedes echar un vistazo a los demás [hooks en github](https://github.com/imbhargav5/rooks), es muy interesante entender como funcionan si eres desarrollador de aplicaciones en react.
