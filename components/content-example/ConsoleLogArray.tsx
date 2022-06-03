@@ -25,7 +25,7 @@ export const ConsoleLogArray: FC<IConsoleLogArrayProps> = ({
   const handleReset = useCallback(() => {
     setArrayItems(items)
     setReturnValue(-1)
-  }, [])
+  }, [items])
 
   const handleRun = () => {
     if (onRemove) {

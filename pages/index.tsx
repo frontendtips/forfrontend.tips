@@ -48,7 +48,6 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <TagList tags={tags} />
-      {/* <PostList posts={posts} /> */}
       <PageTitle tag="h4">Últimos tips</PageTitle>
       <ListLayout posts={posts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} />
       {siteMetadata.newsletter.provider !== '' && (
