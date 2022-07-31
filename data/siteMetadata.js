@@ -5,12 +5,12 @@ const siteMetadata = {
   description: 'Trucos, consejos, recursos y buenas prácticas en el desarrollo front-end.',
   language: 'es-ES',
   siteUrl: 'https://forfrontend.tips',
-  siteRepo: 'https://github.com/gpolanco/forfrontend.tips',
+  siteRepo: 'https://github.com/frontendtips/forfrontend.tips',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'gpolanco.dev@gmail.com',
-  github: 'https://github.com/gpolanco/forfrontend.tips',
+  email: 'forfrontend.tips@gmail.com',
+  github: 'https://github.com/frontendtips/forfrontend.tips',
   twitter: 'https://twitter.com/ForfrontendTips',
   facebook: '',
   youtube: '',
@@ -30,7 +30,7 @@ const siteMetadata = {
   comment: {
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
-    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    provider: '', // supported providers: giscus, utterances, disqus
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
