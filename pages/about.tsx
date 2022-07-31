@@ -8,7 +8,7 @@ export default function About() {
     <article>
       <PageSEO
         title={`About - ${siteMetadata.title}`}
-        description="Temas sobre los que hablamos."
+        description="A few words about the project and its objective"
       />
       <header className="mb-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
