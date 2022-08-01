@@ -1,0 +1,119 @@
+---
+title: Convertir un array en un objeto indexado con JavaScript
+date: '2022-08-01'
+tags: ['javascript']
+draft: false
+summary: Si trabajas con JavaScript, seguro más de una vez te ha tocado convertir un array en objeto. Te explicamos algunas formas de hacer esta conversión en javascript.
+images: [/static/images/convertir-un-array-en-un-objecto-indexado-en-javascript.png]
+layout: PostLayout
+---
+
+La **conversión de array en objetos es muy común en javascript**, sobre todo si trabajas con gran cantidad de datos y quieres mejorar la velocidad de acceso a esos datos.
+
+Utilizando un array, cada vez que quieras buscar o acceder a algun objeto de este array, tendrás que iterar sobre este array hasta encontrar el objeto que buscas. En cambio, si conviertes un array en un objeto indexado, podrás acceder a los datos de ese objeto directamente.
+
+## Buscar un objeto dentro del array
+
+```javascript
+const array = [
+  {
+    id: 1,
+    name: 'Juan',
+    age: 30,
+  },
+  {
+    id: 2,
+    name: 'Pedro',
+    age: 25,
+  },
+  {
+    id: 3,
+    name: 'Maria',
+    age: 20,
+  },
+]
+
+const Pedro = array.find((item) => item.id === 2)
+```
+
+Tenemos que iterar sobre el array y buscar el elemento que deseamos.
+
+## Convertir el array en objeto indexado usando reduce
+
+```javascript
+const array = [
+  {
+    id: '467ed9f4a4cf4255',
+    name: 'Juan',
+    age: 30,
+  },
+  {
+    id: 'bcc432192b283b83',
+    name: 'Pedro',
+    age: 25,
+  }
+]
+
+const object = array.reduce((acc, item) => {
+  acc[item.id] = item
+  return acc
+}, {})
+
+// RESULTADO
+{
+    "467ed9f4a4cf4255": {
+        "id": "467ed9f4a4cf4255",
+        "name": "Juan",
+        "age": 30
+    },
+    "bcc432192b283b83": {
+        "id": "bcc432192b283b83",
+        "name": "Pedro",
+        "age": 25
+    },
+}
+```
+
+Ahora podemos acceder al los item del array directamente usando su id, `object[id]`.
+
+Ya no tienes que iterar sobre el array cada vez que necesites buscar un item. Imaginate una función que busca un item del array.
+
+```JavaScript
+const getItemById = (id) => {
+    return object[id]
+}
+```
+
+Dependiendo de la estructura de datos inicial, puede que necesites usar un método u otro para convertir array en objeto. AQuí algunos ejemplos de como hacerlo.
+
+## Convertir el array en objeto indexado utilizando Object.assign()
+
+El método `Object.assign()` copia las propiedades de un objeto de uno a otro. Si el objeto de origen es un array, utiliza su índice como clave y el objeto como valor.
+
+```javascript
+const names = ['Pedro', 'Juan', 'Maria']
+const object = Object.assign({}, names)
+
+console.log(object) // > {0: 'Pedro', 1: 'Juan', 2: 'Maria'}
+```
+
+> El método devuelve un objeto donde las claves son los índices de la matriz y los valores son los elementos de la matriz.
+
+## Convertir el array en objeto indexado usando Spread operator
+
+USando la sintaxis de spread operator (...), es la forma más sencilla de convertir una matriz en un objeto indexado, por ejemplo,
+
+```javascript
+const names = ['Pedro', 'Juan', 'Maria']
+const object = { ...names }
+
+console.log(object) // > {0: 'Pedro', 1: 'Juan', 2: 'Maria'}
+```
+
+> Convierte el erray en un objeto, donde las claves son el índice del array y los valores son los elementos del array.
+
+## Conclusión
+
+Te he mostrado algunas de las formas más sencillas de crear un objeto indexado en javascript, pero, esto puedes hacerlo utilizando cualquiera de los bucles disponibles en el lenguage.
+
+Es un buena práctica convertir los array en objetos indexados, para mejorar la velocidad a la hora de acceder a los datos. Esto solo es necesario si trabajas con gran cantidad de datos, de lo contrario, utilizando los métodos `filter` o `find` será suficiente.
