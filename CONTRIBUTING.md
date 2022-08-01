@@ -6,7 +6,7 @@ There are several ways to collaborate on this project
 
 To add a new tip to the list, follow these steps
 
-- Fork the [repository](https://github.com/gpolanco/forfrontend.tips)
+- Fork the [repository](https://github.com/frontendtips/forfrontend.tips)
 - Create a new file in the [tips] folder.
 - Use [this template](TIPS_TEMPLATE.md) as a guide
 - Use h2 (##) for subtitles
