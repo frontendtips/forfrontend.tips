@@ -1,0 +1,106 @@
+---
+title: Invertir una cadena de texto en javascript
+date: '2022-08-10'
+tags: ['javascript']
+draft: false
+summary: Podemos invertir los caracteres de una cadena de texto, convirtiendo dicha cadena de texto en un array usando spread operator (...) y utilizando el método `revert()` de los arrays. Hay otras formas de hacerlo, pero usando el método revert es la más simple.
+images: ['/static/images/invertir-orden-de-un-string-en-javascript.png']
+layout: PostLayout
+---
+
+Podemos invertir los caracteres de una cadena de texto, convirtiendo dicha cadena de texto en un array usando spread operator (...) y utilizando el método `revert()` de los arrays.
+
+Vamos a verlo paso a paso que se entenderá mejor.
+
+## 1. Creamos nuestra función `revertText(text)`
+
+Esta recibe por parámetro una cadena de texto y retorna el texto invertido.
+
+```JavaScript
+const revertText = (text) => {
+  return '';
+}
+```
+
+## 2. Convertimos la cadena de texto en array
+
+Tenemos dos formas para convertir un `string` en un `array`
+
+- Utilizando el método `split()` del Objeto `Strings`. Algo así [`text.split('')`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+- Otra forma es usando el operador `...` (spread operator) para convertir un **Objeto `String`** en `array`.
+
+Utilizaremos la opción de spread operator.
+
+```JavaScript
+const revertText = (text) => {
+    // convert string to an array
+    const splitText =  [...text];
+
+    return '';
+}
+```
+
+## 3. Invertimos el orden de los caracteres
+
+Para invertir el orden de un array usamos el método [`reverse()`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) de los arrays.
+
+```JavaScript
+const revertText = (text) => {
+    // convert string to an array
+    const splitText =  [...text];
+
+    // Reverse array using reverse() method
+    const reversedText = splitText.reverse();
+
+    return '';
+}
+```
+
+## 4 Concatenamos el array en una cadena de texto
+
+Para unir los elementos de un array en una cadena de texto, podemos utilizar el método [`join()`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/join) de los arrays.
+
+```JavaScript
+const revertText = (text) => {
+    // convert string to an array
+    const splitText =  [...text];
+
+    // Reverse array using reverse() method
+    const reversedText = splitText.reverse();
+
+    // Join array
+    const joinedText = reversedText.join('');
+
+    return joinedText;
+}
+```
+
+Ya tenemos una función que recibe un texto y devuelve el mismo texto con los caracteres invertidos.
+
+```JavaScript
+const revertText = (text) => {
+  // 1. Split a string to convert it to an array
+  const splitText =  [...text];
+
+  // 2. Reverse array using reverse() method
+  const reversedText = splitText.reverse();
+
+  // 3. Join array
+  const joinedText = reversedText.join('');
+
+  return joinedText;
+}
+
+revertText('Hello world');
+// 👉🏻 'dlrow olleH'
+```
+
+## Componente para comprobar el funcionamiento
+
+Introduce un texto en el input y ve el resultado, utilizando la función que acabamos de crear
+
+<RevertString />
+
+## Conclusión
+
+Has aprendido a **invertir el orden de una cadena de texto en JavaScript**. Utilizando la conversión de string a array, usando `revert()` para invertir el orden de un array y la unión de elementos de un array utilizando el método `join()`.

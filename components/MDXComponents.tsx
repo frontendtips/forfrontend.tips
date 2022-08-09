@@ -8,6 +8,7 @@ import Pre from './Pre'
 import { ConsoleLogArray } from './content-example/ConsoleLogArray'
 import { BlogNewsletterForm } from './NewsletterForm'
 import { ExternalLink } from '~/components/content-example/ExternalLink'
+import { RevertString } from '~/components/content-example/RevertString'
 
 const Wrapper: React.ComponentType<{ layout: string }> = ({ layout, ...rest }) => {
   const Layout = require(`../layouts/${layout}`).default
@@ -27,6 +28,7 @@ export const MDXComponents: ComponentMap = {
   ConsoleLogArray,
   //@ts-ignore
   ExternalLink,
+  RevertString,
 }
 
 interface Props {
