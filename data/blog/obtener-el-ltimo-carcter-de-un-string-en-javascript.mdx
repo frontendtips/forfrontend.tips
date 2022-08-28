@@ -1,0 +1,55 @@
+---
+title: Obtener el último carácter de un string en JavaScript
+date: '2022-08-28'
+tags: ['javascript']
+draft: false
+summary: Mostramos varias formas de obtener el último carácter de un string en JavaScript. Como javascript entiende un Objecto string como un Array de caracteres, podemos realizar operaciones de Array en un string para obtener el último carácter.
+images: []
+layout: PostLayout
+---
+
+Mostramos varias formas de **obtener el último carácter de un string en JavaScript**. **JavaScript** considera `string` como un Array de caracteres. Por lo tanto, podemos realizar operaciones de `Array` en un string para obtener el último carácter.
+
+Aquí algunas formas de obtener el último carácter de un string en JavaScript:
+
+## Último carácter de un string usando `split()`
+
+Utilizando el método `split()`, podemos separar un string en un array de strings. El método split recibe como parámetro un string que separa el string original en partes. En nuestro caso usaremos separaremos el texto con espacios y obtendremos un array de strings. Para obtener el último elemento del array, podemos usar el método `.length` que nos devuelve el número de elementos del array.
+
+```javascript
+const text = 'frontend'
+text.split('')[text.length - 1] // 'd'
+```
+
+## Último carácter de un string usando `.charAt()`
+
+El método `charAt()` nos devuelve el carácter en la posición indicada. Por lo tanto, para obtener el último carácter del string podemos `array.length - 1` (recuerda que el indice de los array en javascript es base 0).
+
+```javascript
+const text = 'frontend'
+text.charAt(text.length - 1) // 'd'
+```
+
+## Último carácter de un string usando `.slice()`
+
+El método `slice()` nos devuelve una parte del string. Por lo tanto, para obtener el último carácter del string podemos usar el método `slice()` con el parámetro `-1`. Esto es debido a que si utilizamos un número negativo como parámetro, inicia la búsqueda desde el final del string.
+
+```javascript
+const text = 'frontend'
+text.slice(-1) // 'd'
+```
+
+## Último carácter de un string usando `.substring()`
+
+El método `substring()` nos devuelve una parte del string. Recibe como primer parámetro la posición inicial y como segundo parámetro la posición final. Por lo tanto, como primer parámetro usaremos `array.length - 1` (la longitud del array menos 1) y como segundo parámetro usaremos `array.length`.
+
+```javascript
+const text = 'frontend'
+text.substring(text.length - 1, text.length) // 'd'
+```
+
+## Conclusion
+
+Estás son algunas formas de obtener el último carácter de un string en JavaScript. En mi opinión la forma más sencilla de hacerlo es usando el método `slice(-1)`, más que nada por simplicidad.
+
+Otra forma no descrita anterior mente es accediendo directamente a la última posición del array `text[text.length - 1]`.
